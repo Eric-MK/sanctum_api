@@ -19,5 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("login",[UserController::class,'login']);
+Route::group(['middleware' => 'auth:sanctum'], function(){
+    //All secure URL's
 
+    });//making the routes secure e,g routes to access data within the database but needs the token created through login in 
+
+    Route::post("login",[UserController::class,'login']);
+//dont put login route within the middleware
